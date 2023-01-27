@@ -46,11 +46,13 @@ module.exports.pitch = function (remainingRequest) {
   // shadowMode is enabled in vue-cli with vue build --target web-component.
   // exposes the same __inject__ method like SSR
   if (options.shadowMode) {
+    // updated based on this PR
+    // https://github.com/alancnet/vue-style-loader/pull/1
     return shared.concat([
       '// add CSS to Shadow Root',
       'var add = require(' + addStylesShadowPath + ').default',
       'module.exports.__inject__ = function (shadowRoot) {',
-      '  add(' + id + ', content, ' + isProduction + ', ' + JSON.stringify(options) + 'shadowRoot);',
+      '  add(' + id + ', content, ' + isProduction + ', ' + JSON.stringify(options) + ', shadowRoot);',
       '};'
     ]).join('\n')
   } else if (!isServer) {
