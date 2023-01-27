@@ -50,7 +50,7 @@ module.exports.pitch = function (remainingRequest) {
     // https://github.com/alancnet/vue-style-loader/pull/1
     return shared.concat([
       '// add CSS to Shadow Root',
-      'var add = require(' + addStylesShadowPath + ').default',
+      'var add = require(' + addStylesClientPath + ').default',
       'module.exports.__inject__ = function (shadowRoot) {',
       '  add(' + id + ', content, ' + isProduction + ', ' + JSON.stringify(options) + ', shadowRoot);',
       '};'
